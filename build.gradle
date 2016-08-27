@@ -1,0 +1,33 @@
+group 'com.yangdaodao'
+version = '1.0'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.poi', name: 'poi', version: '3.12'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.12'
+    compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.12'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+mainClassName = "word.template.WordTemplate"
+distributions {
+    main {
+        contents {
+            from('src/main/resources'){
+                into "docs"
+            }
+        }
+    }
+}
+
+[compileJava, javadoc, compileTestJava]*.options*.encoding = 'UTF-8'
